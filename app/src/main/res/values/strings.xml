@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PizzeriaApp</string>
+    <string name="customer_phone_number">Customer Phone Number</string>
+    <string name="deluxe_pizza">Deluxe Pizza</string>
+    <string name="hawaiian_pizza">Hawaiian Pizza</string>
+    <string name="pepperoni_pizza">Pepperoni Pizza</string>
+    <string name="current_orders">Current Orders</string>
+    <string name="store_orders">Store Orders</string>
 </resources>
