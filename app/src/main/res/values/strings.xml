@@ -6,4 +6,16 @@
     <string name="pepperoni_pizza">Pepperoni Pizza</string>
     <string name="current_orders">Current Orders</string>
     <string name="store_orders">Store Orders</string>
+
+    <string name="pizza_customization_heading">Customize Your Pizza</string>
+    <string-array name="sizes">
+        <item>small</item>
+        <item>medium</item>
+        <item>large</item>
+    </string-array>
+    <string name="addButton">add</string>
+    <string name="removeButton">remove</string>
+    <string name="price">Price $</string>
+    <string name="defaultPrice">0.00</string>
+    <string name="addToOrder">Add to Order</string>
 </resources>

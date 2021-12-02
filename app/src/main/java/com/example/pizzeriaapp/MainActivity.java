@@ -1,5 +1,6 @@
 package com.example.pizzeriaapp;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,7 +27,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDeluxeClick(View view) {
-
+        Intent intent = new Intent(this, PizzaCustomizationActivity.class);
+        intent.putExtra("SELECTED_PIZZA", PizzaMaker.createPizza("Deluxe"));
+        intent.putExtra("PIZZA_IMG", R.drawable.deluxe_pizza);
+        startActivity(intent);
     }
 
     public void onHawaiianClick(View view) {
