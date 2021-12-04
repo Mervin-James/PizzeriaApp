@@ -3,6 +3,7 @@ package com.example.pizzeriaapp;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -125,6 +126,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
         currentOrder.addPizza(pizza);
         Toast.makeText(getApplicationContext(), "Pizza added to the order!"
                 , Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -146,6 +148,15 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         //empty is fine
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class ListViewHandler implements AdapterView.OnItemClickListener{
