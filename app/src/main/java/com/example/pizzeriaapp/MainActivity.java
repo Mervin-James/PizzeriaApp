@@ -12,6 +12,9 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
     private static final int PHONE_NUMBER_DIGITS = 10;
+    private static final int PIZZA_CUSTOMIZATION_REQUEST_CODE = 1;
+    private static final int CURRENT_ORDER_REQUEST_CODE = 2;
+    private static final int STORE_ORDERS_REQUEST_CODE = 3;
     private TextInputLayout customerNumberLayout;
     private TextView phoneNumberTf;
     private StoreOrders orders;
@@ -25,21 +28,6 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.customerNumberTextInputLayout);
         phoneNumberTf = findViewById(R.id.customerNumberTextField);
         this.orders = new StoreOrders();
-//        if(savedInstanceState != null) {
-//            StoreOrders restoredOrders =
-//                    (StoreOrders) savedInstanceState.getSerializable(
-//                            "RESTORED_ORDERS");
-//            Order restoredSelectedOrder =
-//                    (Order) savedInstanceState.getSerializable(
-//                            "RESTORED_SELECTED_ORDER");
-//            if (restoredSelectedOrder != null)
-//                phoneNumberTf.setText(restoredSelectedOrder.getPhoneNumber());
-//            this.orders = restoredOrders != null ? restoredOrders :
-//                    new StoreOrders();
-//            this.selectedOrder = restoredSelectedOrder;
-//        } else {
-//            this.orders = new StoreOrders();
-//        }
     }
 
     public void onDeluxeClick(View view) {
@@ -52,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         }
         intent.putExtra("SELECTED_ORDER", this.selectedOrder);
         intent.putExtra("PIZZA_IMG", R.drawable.deluxe_pizza);
-        startActivity(intent);
+        startActivityForResult(intent, PIZZA_CUSTOMIZATION_REQUEST_CODE);
     }
 
     public void onHawaiianClick(View view) {
@@ -65,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
         intent.putExtra("SELECTED_ORDER", this.selectedOrder);
         intent.putExtra("PIZZA_IMG", R.drawable.hawaiian_pizza);
-        startActivity(intent);
+        startActivityForResult(intent, PIZZA_CUSTOMIZATION_REQUEST_CODE);
     }
 
     public void onPepperoniClick(View view) {
@@ -79,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }
         intent.putExtra("SELECTED_ORDER", this.selectedOrder);
         intent.putExtra("PIZZA_IMG", R.drawable.pepperoni_pizza);
-        startActivity(intent);
+        startActivityForResult(intent, PIZZA_CUSTOMIZATION_REQUEST_CODE);
     }
 
     public void onCurrentOrdersClick(View view) {
@@ -88,13 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 .equals(phoneNumberTf.getText().toString())) {
             selectedOrder = new Order(phoneNumberTf.getText().toString());
         }
-        selectedOrder = new Order("0987654321");
-        selectedOrder.addPizza(PizzaMaker.createPizza("Deluxe"));
-        selectedOrder.addPizza(PizzaMaker.createPizza("Pepperoni"));
         Intent intent = new Intent(this, CurrentOrderActivity.class);
         intent.putExtra("STORE_ORDERS", this.orders);
         intent.putExtra("CURRENT_ORDER", this.selectedOrder);
-        startActivity(intent);
+        startActivityForResult(intent, CURRENT_ORDER_REQUEST_CODE);
     }
 
     public void onStoreOrdersClick(View view) {
@@ -113,11 +98,22 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putSerializable("RESTORED_ORDERS", orders);
-//        outState.putSerializable("RESTORED_SELECTED_ORDER", selectedOrder);
-//        outState.putString("yes", "hi");
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode != RESULT_OK) return;
+        if (requestCode == PIZZA_CUSTOMIZATION_REQUEST_CODE) {
+            this.selectedOrder = (Order) intent.getSerializableExtra(
+                    "CURRENT_ORDER");
+        } else if (requestCode == CURRENT_ORDER_REQUEST_CODE) {
+            this.orders = (StoreOrders) intent.getSerializableExtra(
+                    "STORE_ORDERS");
+            this.selectedOrder = null;
+            phoneNumberTf.setText("");
+        } else if (requestCode == STORE_ORDERS_REQUEST_CODE) {
+
+        }
+    }
+
 }

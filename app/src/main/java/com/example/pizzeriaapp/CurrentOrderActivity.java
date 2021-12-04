@@ -40,7 +40,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
             @Override public void onChanged() {
                 super.onChanged();
 //                removePizzaBtn.setEnabled(selectedPizza != null);
-                placeOrderBtn.setEnabled(pizzasAdapter.isEmpty());
+//                placeOrderBtn.setEnabled(pizzasAdapter.isEmpty());
                 updateFields();
             }
         });
@@ -60,6 +60,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
         ordersList.addOrder(order);
         Toast.makeText(getApplicationContext(), "Order placed!",
                 Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putExtra("STORE_ORDERS", this.ordersList);
+        setResult(RESULT_OK, intent);
         finish();
     }
 

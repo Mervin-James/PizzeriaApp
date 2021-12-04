@@ -12,7 +12,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class PizzaCustomizationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class PizzaCustomizationActivity extends AppCompatActivity
+        implements AdapterView.OnItemSelectedListener {
+    Topping toppingToAdd;
+    Topping toppingToRemove;
     private Spinner spinner;
     private ListView list1, list2;
     private ImageView pizzaView;
@@ -22,8 +25,6 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
     private ArrayList<Topping> defaultToppings;
     private Pizza pizza;
     private Order currentOrder;
-    Topping toppingToAdd;
-    Topping toppingToRemove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(this,
-                R.array.sizes, android.R.layout.simple_spinner_item);
+                        R.array.sizes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -95,8 +96,10 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
                 adapter1.notifyDataSetChanged();
                 adapter2.notifyDataSetChanged();
             } else {
-                Toast.makeText(getApplicationContext(), "Maximum number of toppings\n" +
-                        "At most 7 toppings!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        "Maximum number of toppings\n" +
+                                "At most 7 toppings!",
+                        Toast.LENGTH_SHORT).show();
             }
             DecimalFormat df = new DecimalFormat("###,##0.00");
             pizzaPrice.setText(df.format(pizza.price()));
@@ -126,19 +129,21 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
         currentOrder.addPizza(pizza);
         Toast.makeText(getApplicationContext(), "Pizza added to the order!"
                 , Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putExtra("CURRENT_ORDER", this.currentOrder);
+        setResult(RESULT_OK, intent);
         finish();
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                               long id) {
         String size = (String) parent.getSelectedItem();
-        if (Objects.equals(size,"small")) {
+        if (Objects.equals(size, "small")) {
             pizza.setSize(Size.small);
-        }
-        else if (Objects.equals(size, "medium")) {
+        } else if (Objects.equals(size, "medium")) {
             pizza.setSize(Size.medium);
-        }
-        else if (Objects.equals(size, "large")) {
+        } else if (Objects.equals(size, "large")) {
             pizza.setSize(Size.large);
         }
         DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -152,23 +157,26 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
+            setResult(RESULT_CANCELED);
             finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    class ListViewHandler implements AdapterView.OnItemClickListener{
+    class ListViewHandler implements AdapterView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public void onItemClick(AdapterView<?> parent, View view,
+                                int position, long id) {
             toppingToAdd = (Topping) parent.getItemAtPosition(position);
         }
     }
 
-    class ListViewHandler2 implements AdapterView.OnItemClickListener{
+    class ListViewHandler2 implements AdapterView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public void onItemClick(AdapterView<?> parent, View view,
+                                int position, long id) {
             toppingToRemove = (Topping) parent.getItemAtPosition(position);
         }
     }
