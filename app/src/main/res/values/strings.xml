@@ -4,7 +4,7 @@
     <string name="deluxe_pizza">Deluxe Pizza</string>
     <string name="hawaiian_pizza">Hawaiian Pizza</string>
     <string name="pepperoni_pizza">Pepperoni Pizza</string>
-    <string name="current_orders">Current Orders</string>
+    <string name="current_order">Current Order</string>
     <string name="store_orders">Store Orders</string>
     <string name="image_view">Image View</string>
 
@@ -25,4 +25,11 @@
     <string name="store_orders_heading">Store Orders</string>
     <string name="order_total">Order Total $</string>
     <string name="cancel_order">Cancel Order</string>
+
+    <string name="subtotal_label">Subtotal $</string>
+    <string name="sales_tax_label">Sales Tax $</string>
+    <string name="order_total_label">Order Total $</string>
+    <string name="remove_pizza">Remove Pizza</string>
+    <string name="place_order">Place Order</string>
+
 </resources>

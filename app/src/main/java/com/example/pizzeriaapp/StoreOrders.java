@@ -3,6 +3,7 @@ package com.example.pizzeriaapp;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Mervin James, Akshar Patel
  */
-public class StoreOrders {
+public class StoreOrders implements Serializable {
     private final ArrayList<Order> orders;
 
     /**
