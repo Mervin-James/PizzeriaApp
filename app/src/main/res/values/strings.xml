@@ -6,8 +6,11 @@
     <string name="pepperoni_pizza">Pepperoni Pizza</string>
     <string name="current_orders">Current Orders</string>
     <string name="store_orders">Store Orders</string>
+    <string name="image_view">Image View</string>
 
     <string name="pizza_customization_heading">Customize Your Pizza</string>
+    <string name="additionalToppings">Additional Toppings</string>
+    <string name="selectedToppings">Selected Toppings</string>
     <string-array name="sizes">
         <item>small</item>
         <item>medium</item>

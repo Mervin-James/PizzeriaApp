@@ -1,5 +1,6 @@
 package com.example.pizzeriaapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Mervin James, Akshar Patel
  */
-public class Order {
+public class Order implements Serializable {
     private static final double TAX_RATE = 0.06625;
     private final String phoneNumber;
     private final ArrayList<Pizza> pizzas = new ArrayList<Pizza>();
