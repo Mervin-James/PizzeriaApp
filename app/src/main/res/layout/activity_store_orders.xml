@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <TextView
+            android:text="@string/customer_phone_number"
+            android:layout_width="173dp"
+            android:layout_height="28dp" android:id="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            android:layout_marginTop="32dp" app:layout_constraintEnd_toStartOf="@+id/phoneNumberSpinner"
+            android:layout_marginEnd="8dp"/>
+    <TextView
+            android:text="@string/store_orders_heading"
+            android:layout_width="379dp"
+            android:layout_height="29dp" android:id="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAlignment="center" android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="28dp"/>
+    <Spinner
+            android:layout_width="196dp"
+            android:layout_height="31dp" android:id="@+id/phoneNumberSpinner"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+    <ListView
+            android:layout_width="376dp"
+            android:layout_height="263dp"
+            android:id="@+id/listView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" android:layout_marginTop="132dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"/>
+    <Button
+            android:text="@string/cancel_order"
+            android:layout_width="151dp"
+            android:layout_height="40dp" android:id="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/listView2"
+            android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:onClick="onCancelOrderClick"/>
+    <TextView
+            android:text="@string/order_total"
+            android:layout_width="85dp"
+            android:layout_height="25dp" android:id="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView12"
+            android:layout_marginTop="16dp" app:layout_constraintEnd_toStartOf="@+id/textView15"
+            android:layout_marginEnd="4dp"/>
+    <TextView
+            android:text="@string/defaultPrice"
+            android:layout_width="118dp"
+            android:layout_height="27dp" android:id="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberSpinner"
+            android:layout_marginTop="12dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="88dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

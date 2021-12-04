@@ -22,6 +22,10 @@
                 android:name=".PizzaCustomizationActivity"
                 android:parentActivityName=".MainActivity">
         </activity>
+        <activity
+                android:name=".StoreOrdersActivity"
+                android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

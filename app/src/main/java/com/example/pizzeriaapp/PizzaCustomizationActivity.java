@@ -1,7 +1,6 @@
 package com.example.pizzeriaapp;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -27,7 +26,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pizza_customization_activity);
+        setContentView(R.layout.activity_pizza_customization);
         setupPizza();
 
         Spinner spinner = findViewById(R.id.spinner);
@@ -125,6 +124,8 @@ public class PizzaCustomizationActivity extends AppCompatActivity implements Ada
         currentOrder.addPizza(pizza);
         Toast.makeText(getApplicationContext(), "Pizza added to the order!"
                 , Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
