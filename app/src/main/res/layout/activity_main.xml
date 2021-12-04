@@ -94,7 +94,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="14dp" android:layout_marginStart="14dp"
-            android:id="@+id/textInputLayout">
+            android:id="@+id/customerNumberTextInputLayout"
+            app:errorEnabled="true">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -102,16 +103,16 @@
                 android:layout_height="match_parent"
                 android:hint="@string/customer_phone_number"
                 android:id="@+id/customerNumberTextField"
-                tools:layout_editor_absoluteX="58dp"/>
+                tools:layout_editor_absoluteX="58dp" android:maxLength="10"/>
     </com.google.android.material.textfield.TextInputLayout>
     <ImageButton
             android:layout_width="120dp"
             android:layout_height="86dp"
             android:id="@+id/deluxeButton"
             android:scaleType="fitCenter"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/customerNumberTextInputLayout"
             android:layout_marginTop="28dp"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/customerNumberTextInputLayout"
             android:contentDescription="@string/deluxe_pizza"
             android:foreground="@drawable/deluxe_pizza"
             android:onClick="onDeluxeClick"/>
@@ -129,11 +130,11 @@
             android:layout_height="120dp"
             android:id="@+id/currentOrdersButton"
             android:scaleType="fitCenter"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/customerNumberTextInputLayout"
             android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+            app:layout_constraintEnd_toEndOf="@+id/customerNumberTextInputLayout"
             android:contentDescription="@string/current_orders"
             android:foreground="@drawable/current_order"
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="44dp"
             android:onClick="onCurrentOrdersClick"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
