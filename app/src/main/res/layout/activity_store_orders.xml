@@ -23,14 +23,14 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="28dp"/>
     <Spinner
-            android:layout_width="196dp"
-            android:layout_height="31dp" android:id="@+id/phoneNumberSpinner"
+            android:layout_width="174dp"
+            android:layout_height="25dp" android:id="@+id/phoneNumberSpinner"
             app:layout_constraintTop_toBottomOf="@+id/textView11" android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"/>
     <ListView
             android:layout_width="376dp"
             android:layout_height="263dp"
-            android:id="@+id/listView2"
+            android:id="@+id/storeOrdersListView"
             app:layout_constraintTop_toBottomOf="@+id/textView11" android:layout_marginTop="132dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.485"/>
@@ -38,7 +38,7 @@
             android:text="@string/cancel_order"
             android:layout_width="151dp"
             android:layout_height="40dp" android:id="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/listView2"
+            app:layout_constraintTop_toBottomOf="@+id/storeOrdersListView"
             android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:onClick="onCancelOrderClick"/>
     <TextView
@@ -46,12 +46,12 @@
             android:layout_width="85dp"
             android:layout_height="25dp" android:id="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
-            android:layout_marginTop="16dp" app:layout_constraintEnd_toStartOf="@+id/textView15"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginTop="8dp" app:layout_constraintEnd_toStartOf="@+id/storeOrderTotalTextField"
+            android:layout_marginEnd="8dp"/>
     <TextView
             android:text="@string/defaultPrice"
-            android:layout_width="118dp"
-            android:layout_height="27dp" android:id="@+id/textView15"
+            android:layout_width="119dp"
+            android:layout_height="24dp" android:id="@+id/storeOrderTotalTextField"
             app:layout_constraintTop_toBottomOf="@+id/phoneNumberSpinner"
             android:layout_marginTop="12dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="88dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

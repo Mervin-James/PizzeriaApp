@@ -89,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 .equals(phoneNumberTf.getText().toString())) {
             selectedOrder = new Order(phoneNumberTf.getText().toString());
         }
-        selectedOrder = new Order("0987654321");
-        selectedOrder.addPizza(PizzaMaker.createPizza("Deluxe"));
-        selectedOrder.addPizza(PizzaMaker.createPizza("Pepperoni"));
         Intent intent = new Intent(this, CurrentOrderActivity.class);
         intent.putExtra("STORE_ORDERS", this.orders);
         intent.putExtra("CURRENT_ORDER", this.selectedOrder);
@@ -99,7 +96,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onStoreOrdersClick(View view) {
-
+        Intent intent = new Intent(this, StoreOrdersActivity.class);
+        intent.putExtra("SELECTED_ORDER", this.selectedOrder);
+        intent.putExtra("STORE_ORDERS", this.orders);
+        startActivity(intent);
     }
 
     private boolean isPhoneNumberInvalid() {
