@@ -1,10 +1,6 @@
 package com.example.pizzeriaapp;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -51,27 +47,4 @@ public class StoreOrders implements Serializable {
         orders.remove(order);
     }
 
-    /**
-     * Exports the orders to a text file.
-     *
-     * @param targetFile file that the orders will be written to.
-     * @throws FileNotFoundException exception caused when a file is not
-     * found.
-     */
-    public void export(File targetFile) throws FileNotFoundException {
-        DecimalFormat df = new DecimalFormat("###,##0.00");
-        PrintWriter pw = new PrintWriter(targetFile);
-        for (Order order : orders) {
-            pw.println("Customer phone number: " + order.getPhoneNumber());
-            pw.println("\torders:");
-            for (int j = 0; j < order.getPizzas().size(); j++) {
-                Pizza pizza = order.getPizzas().get(j);
-                pw.println("\t\t" + pizza.toString());
-            }
-            pw.println("\tsubtotal: $" + df.format(order.subtotal()));
-            pw.println("\tsales tax: $" + df.format(order.salesTax()));
-            pw.println("\torder total: $" + df.format(order.orderTotal()));
-        }
-        pw.close();
-    }
 }
