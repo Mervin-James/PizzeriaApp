@@ -62,13 +62,6 @@ public abstract class Pizza implements Serializable {
     }
 
     /**
-     * Getter method for the size of the pizza.
-     */
-    public Size getSize() {
-        return this.size;
-    }
-
-    /**
      * Getter method for the list of toppings on a pizza.
      *
      * @return list of toppings on a pizza.

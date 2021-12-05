@@ -1,7 +1,5 @@
 package com.example.pizzeriaapp;
 
-import java.io.Serializable;
-
 /**
  * A class that creates instances of different types of pizzas.
  *

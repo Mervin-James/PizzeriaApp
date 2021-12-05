@@ -1,7 +1,5 @@
 package com.example.pizzeriaapp;
 
-import java.io.Serializable;
-
 /**
  * A class that defines a Deluxe pizza with its default toppings. This
  * class contains an overridden price method that calculates the price of a
