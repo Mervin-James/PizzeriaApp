@@ -33,4 +33,9 @@
     <string name="place_order">Place Order</string>
     <string name="remove_pizza_instructions">Click pizza to remove from order</string>
 
+    <string name="main_activity_title">RU Pizzeria</string>
+    <string name="pizza_customization_activity_title">Pizza Customization</string>
+    <string name="current_order_activity_title">Pizza Order Overview</string>
+    <string name="store_orders_activity_title">Store Orders Overview</string>
+
 </resources>

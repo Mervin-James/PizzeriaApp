@@ -106,7 +106,7 @@ public class StoreOrdersActivity extends AppCompatActivity
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        // empty is fine
     }
 
     @Override
