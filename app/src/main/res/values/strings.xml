@@ -31,5 +31,6 @@
     <string name="order_total_label">Order Total $</string>
     <string name="remove_pizza">Remove Pizza</string>
     <string name="place_order">Place Order</string>
+    <string name="remove_pizza_instructions">Click pizza to remove from order</string>
 
 </resources>

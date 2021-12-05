@@ -25,7 +25,6 @@ public class StoreOrdersActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_orders);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         Intent intent = getIntent();
         orders = (StoreOrders) intent.getSerializableExtra("STORE_ORDERS");
         ordersList = orders.getOrders();
@@ -84,10 +83,14 @@ public class StoreOrdersActivity extends AppCompatActivity
         }
         spinner.setAdapter(new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, stringOrdersList));
+        if (selectedOrder != null) {
+            updateOrderTotal();
+        }
         if (ordersList.isEmpty()) {
             ordersListView.setAdapter(null);
+            storeOrderTotal.setText(getResources()
+                    .getString(R.string.defaultPrice));
         }
-        updateOrderTotal();
     }
 
     @Override

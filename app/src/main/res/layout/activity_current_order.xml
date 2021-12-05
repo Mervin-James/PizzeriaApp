@@ -93,6 +93,13 @@
             android:layout_height="40dp" android:id="@+id/button2"
             android:onClick="onPlaceOrderButtonClick"
             app:layout_constraintTop_toBottomOf="@+id/pizzasListView"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/pizzasListView"/>
+            android:layout_marginTop="44dp"
+            app:layout_constraintEnd_toEndOf="@+id/pizzasListView" android:layout_marginEnd="36dp"/>
+    <TextView
+            android:text="@string/remove_pizza_instructions"
+            android:layout_width="218dp"
+            android:layout_height="25dp" android:id="@+id/remove_pizza_instructions"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/pizzasListView" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

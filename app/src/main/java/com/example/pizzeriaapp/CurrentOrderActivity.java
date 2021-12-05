@@ -2,6 +2,7 @@ package com.example.pizzeriaapp;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_order);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView customerNumber =
                 findViewById(R.id.customerPhoneNumberTextField);
         subtotal = findViewById(R.id.subtotalTextField);
@@ -46,13 +48,19 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     public void onPlaceOrderButtonClick(View view) {
-        ordersList.addOrder(order);
-        Toast.makeText(getApplicationContext(), "Order placed!",
-                Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent();
-        intent.putExtra("STORE_ORDERS", this.ordersList);
-        setResult(RESULT_OK, intent);
-        finish();
+        if (!order.getPizzas().isEmpty()) {
+            ordersList.addOrder(order);
+            Toast.makeText(getApplicationContext(), "Order placed!",
+                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.putExtra("STORE_ORDERS", this.ordersList);
+            setResult(RESULT_OK, intent);
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "There are no pizzas" +
+                            " in this order!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void updateFields() {
@@ -71,5 +79,15 @@ public class CurrentOrderActivity extends AppCompatActivity {
             pizzasAdapter.notifyDataSetChanged();
             order.removePizza(pizzaToRemove);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            setResult(RESULT_CANCELED);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
