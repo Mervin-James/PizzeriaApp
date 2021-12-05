@@ -9,9 +9,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.PizzeriaApp">
-        <activity android:name=".CurrentOrderActivity">
+        <activity
+                android:name=".CurrentOrderActivity"
+                android:label="@string/current_order_activity_title">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/main_activity_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,10 +24,12 @@
         </activity>
         <activity
                 android:name=".PizzaCustomizationActivity"
+                android:label="@string/pizza_customization_activity_title"
                 android:parentActivityName=".MainActivity">
         </activity>
         <activity
                 android:name=".StoreOrdersActivity"
+                android:label="@string/store_orders_activity_title"
                 android:parentActivityName=".MainActivity">
         </activity>
     </application>
