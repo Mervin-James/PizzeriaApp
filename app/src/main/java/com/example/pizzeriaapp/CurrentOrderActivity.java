@@ -54,7 +54,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, order.getPizzas());
         pizzas.setAdapter(pizzasAdapter);
         pizzasAdapter.registerDataSetObserver(new DataSetObserver() {
-            @Override public void onChanged() {
+            @Override
+            public void onChanged() {
                 super.onChanged();
                 updateFields();
             }
