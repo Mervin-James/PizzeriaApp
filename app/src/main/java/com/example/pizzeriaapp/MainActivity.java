@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Handes users trying to get the overview of the current order.
+     * Handles users trying to get the overview of the current order.
      *
      * @param view contains information about the current UI.
      */
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Handes users trying to get the overview of all the store orders.
+     * Handles users trying to get the overview of all the store orders.
      *
      * @param view contains information about the current UI.
      */

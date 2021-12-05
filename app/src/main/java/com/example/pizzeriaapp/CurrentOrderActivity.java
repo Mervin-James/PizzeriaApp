@@ -85,7 +85,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     /**
-     * Helper method to update the textfields in the UI.
+     * Helper method to update the textviews in the UI.
      */
     private void updateFields() {
         DecimalFormat df = new DecimalFormat("#,##0.00");
@@ -95,7 +95,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     /**
-     * Sets the back button in the view's toolbar finish the current activity.
+     * Sets the back button in the toolbar to finish the current activity.
      *
      * @param item the MenuItem being selected.
      * @return true if the selected button is the back button on the
