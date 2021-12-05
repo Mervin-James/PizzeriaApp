@@ -149,9 +149,11 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Handles incoming intents when child activities are finished.
+     *
      * @param requestCode identifies the child activity.
-     * @param resultCode the status of the task of the child activity.
-     * @param intent contains information about the child activity's results.
+     * @param resultCode  the status of the task of the child activity.
+     * @param intent      contains information about the child activity's
+     *                    results.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
@@ -164,8 +166,11 @@ public class MainActivity extends AppCompatActivity {
         } else if (requestCode == CURRENT_ORDER_REQUEST_CODE) {
             this.orders = (StoreOrders) intent.getSerializableExtra(
                     "STORE_ORDERS");
-            this.selectedOrder = null;
-            phoneNumberTf.setText("");
+            this.selectedOrder = (Order) intent.getSerializableExtra(
+                    "SELECTED_ORDER");
+            String phoneNum = selectedOrder == null ? "" :
+                    selectedOrder.getPhoneNumber();
+            phoneNumberTf.setText(phoneNum);
         } else if (requestCode == STORE_ORDERS_REQUEST_CODE) {
             this.orders = (StoreOrders) intent.getSerializableExtra(
                     "STORE_ORDERS");

@@ -120,10 +120,10 @@ public class StoreOrdersActivity extends AppCompatActivity
     /**
      * Updates list views when a phone number is selected from spinner.
      *
-     * @param parent the AdapterView where the selection happened
-     * @param view the view within the AdapterView that was clicked
+     * @param parent   the AdapterView where the selection happened
+     * @param view     the view within the AdapterView that was clicked
      * @param position the position of the view in the adapter
-     * @param id the row id of the item that is selected
+     * @param id       the row id of the item that is selected
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position,
@@ -158,10 +158,7 @@ public class StoreOrdersActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("STORE_ORDERS", this.orders);
-            setResult(RESULT_OK, intent);
-            finish();
+            handleBack();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -172,10 +169,17 @@ public class StoreOrdersActivity extends AppCompatActivity
      */
     @Override
     public void onBackPressed() {
+        handleBack();
+        super.onBackPressed();
+    }
+
+    /**
+     * Helper method that creates the intent to be sent to Main Activity.
+     */
+    private void handleBack() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("STORE_ORDERS", this.orders);
         setResult(RESULT_OK, intent);
         finish();
-        super.onBackPressed();
     }
 }

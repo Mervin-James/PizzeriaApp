@@ -75,6 +75,8 @@ public class CurrentOrderActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("STORE_ORDERS", this.ordersList);
+            this.order = null;
+            intent.putExtra("SELECTED_ORDER", this.order);
             setResult(RESULT_OK, intent);
             finish();
         } else {
@@ -104,11 +106,30 @@ public class CurrentOrderActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            setResult(RESULT_CANCELED);
-            finish();
+            handleBack();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Sends current state to MainActivity when back button is pressed.
+     */
+    @Override
+    public void onBackPressed() {
+        handleBack();
+        super.onBackPressed();
+    }
+
+    /**
+     * Helper method that creates the intent to be sent to Main Activity.
+     */
+    private void handleBack() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("STORE_ORDERS", this.ordersList);
+        intent.putExtra("SELECTED_ORDER", this.order);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     /**
