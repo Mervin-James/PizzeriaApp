@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.android.material.textfield.TextInputLayout;
 
+/**
+ * Activity class that specifies the attributes and actions for the Main
+ * Activity (home screen of the app).
+ *
+ */
 public class MainActivity extends AppCompatActivity {
     private static final int PHONE_NUMBER_DIGITS = 10;
     private static final int PIZZA_CUSTOMIZATION_REQUEST_CODE = 1;

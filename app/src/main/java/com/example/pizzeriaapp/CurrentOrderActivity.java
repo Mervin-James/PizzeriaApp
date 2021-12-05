@@ -10,6 +10,14 @@ import android.os.Bundle;
 
 import java.text.DecimalFormat;
 
+/**
+ * Activity class that specifies the attributes and actions for the Current
+ * Order Activity.
+ * This class also has a list view handler inner class with an item click
+ * listener for the pizzas listview.
+ *
+ * @author Akshar Patel, Mervin James
+ */
 public class CurrentOrderActivity extends AppCompatActivity {
     private ArrayAdapter<Pizza> pizzasAdapter;
     private TextView subtotal;
@@ -18,6 +26,13 @@ public class CurrentOrderActivity extends AppCompatActivity {
     private StoreOrders ordersList;
     private Order order;
 
+    /**
+     * Creates this activity when instantiated.
+     *
+     * @param savedInstanceState a bundle that contains any saved
+     *                           information about this activity's prior
+     *                           state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +62,11 @@ public class CurrentOrderActivity extends AppCompatActivity {
         updateFields();
     }
 
+    /**
+     * Handler method for the user when placing an order.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onPlaceOrderButtonClick(View view) {
         if (!order.getPizzas().isEmpty()) {
             ordersList.addOrder(order);
@@ -63,6 +83,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Helper method to update the textfields in the UI.
+     */
     private void updateFields() {
         DecimalFormat df = new DecimalFormat("#,##0.00");
         subtotal.setText(df.format(order.subtotal()));
@@ -70,6 +93,26 @@ public class CurrentOrderActivity extends AppCompatActivity {
         orderTotal.setText(df.format(order.orderTotal()));
     }
 
+    /**
+     * Sets the back button in the view's toolbar finish the current activity.
+     *
+     * @param item the MenuItem being selected.
+     * @return true if the selected button is the back button on the
+     * toolbar, else returns the super method's result.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            setResult(RESULT_CANCELED);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Inner class which attaches an item click listener to pizza's ListView.
+     */
     class PizzasListViewHandler implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view,
@@ -79,15 +122,5 @@ public class CurrentOrderActivity extends AppCompatActivity {
             pizzasAdapter.notifyDataSetChanged();
             order.removePizza(pizzaToRemove);
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            setResult(RESULT_CANCELED);
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
