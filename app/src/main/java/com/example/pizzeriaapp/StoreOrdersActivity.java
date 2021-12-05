@@ -138,10 +138,10 @@ public class StoreOrdersActivity extends AppCompatActivity
      * Callback method that is invoked when the selection disappears from
      * this view.
      *
-     * @param adapterView the AdapterView that now contains no selected item
+     * @param parent the AdapterView that now contains no selected item
      */
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
+    public void onNothingSelected(AdapterView<?> parent) {
         // empty is fine
     }
 
