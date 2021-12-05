@@ -40,7 +40,8 @@ public class StoreOrdersActivity extends AppCompatActivity
             spinner = findViewById(R.id.phoneNumberSpinner);
             adapter = new ArrayAdapter(this,
                     android.R.layout.simple_spinner_item, stringOrdersList);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(
+                    android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);
             spinner.setOnItemSelectedListener(this);
 

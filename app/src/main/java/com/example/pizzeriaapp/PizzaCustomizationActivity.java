@@ -16,7 +16,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity
     Topping toppingToAdd;
     Topping toppingToRemove;
     private TextView pizzaPrice;
-    private ArrayAdapter adapter1, adapter2;
+    private ArrayAdapter additionalToppingsAdapter, selectedToppingsAdapter;
     private ArrayList<Topping> toppings;
     private ArrayList<Topping> defaultToppings;
     private Pizza pizza;
@@ -32,24 +32,26 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(this,
                         R.array.sizes, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        adapter1 = new ArrayAdapter(this,
+        additionalToppingsAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, toppings);
-        ListView list1 = findViewById(R.id.additionalToppings);
-        list1.setAdapter(adapter1);
-        list1.setOnItemClickListener(new ListViewHandler());
+        ListView additionalToppingsList =
+                findViewById(R.id.additionalToppings);
+        additionalToppingsList.setAdapter(additionalToppingsAdapter);
+        additionalToppingsList.setOnItemClickListener(new ListViewHandler());
 
         ArrayList<Topping> initialToppings = new ArrayList<>();
         initialToppings.addAll(defaultToppings);
 
-        adapter2 = new ArrayAdapter(this,
+        selectedToppingsAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, initialToppings);
-        ListView list2 = findViewById(R.id.selectedToppings);
-        list2.setAdapter(adapter2);
-        list2.setOnItemClickListener(new ListViewHandler2());
+        ListView selectedToppingsList = findViewById(R.id.selectedToppings);
+        selectedToppingsList.setAdapter(selectedToppingsAdapter);
+        selectedToppingsList.setOnItemClickListener(new ListViewHandler2());
 
         DecimalFormat df = new DecimalFormat("#,##0.00");
         pizzaPrice.setText(df.format(pizza.price()));
@@ -83,14 +85,15 @@ public class PizzaCustomizationActivity extends AppCompatActivity
     }
 
     public void onAddButtonClick(View view) {
-        int position = adapter1.getPosition(toppingToAdd);
+        int position = additionalToppingsAdapter.getPosition(toppingToAdd);
         if (toppingToAdd != null) {
             boolean isToppingAdded = pizza.addTopping(toppingToAdd);
             if (isToppingAdded) {
-                adapter1.remove(adapter1.getItem(position));
-                adapter2.add(toppingToAdd);
-                adapter1.notifyDataSetChanged();
-                adapter2.notifyDataSetChanged();
+                additionalToppingsAdapter.remove(additionalToppingsAdapter
+                        .getItem(position));
+                selectedToppingsAdapter.add(toppingToAdd);
+                additionalToppingsAdapter.notifyDataSetChanged();
+                selectedToppingsAdapter.notifyDataSetChanged();
             } else {
                 Toast.makeText(getApplicationContext(),
                         "Maximum number of toppings\n" +
@@ -104,13 +107,14 @@ public class PizzaCustomizationActivity extends AppCompatActivity
     }
 
     public void onRemoveButtonClick(View view) {
-        int position = adapter2.getPosition(toppingToRemove);
+        int position = selectedToppingsAdapter.getPosition(toppingToRemove);
         boolean isDefaultTopping = defaultToppings.contains(toppingToRemove);
         if (toppingToRemove != null && !isDefaultTopping) {
-            adapter2.remove(adapter2.getItem(position));
-            adapter1.add(toppingToRemove);
-            adapter1.notifyDataSetChanged();
-            adapter2.notifyDataSetChanged();
+            selectedToppingsAdapter.remove(selectedToppingsAdapter
+                    .getItem(position));
+            additionalToppingsAdapter.add(toppingToRemove);
+            additionalToppingsAdapter.notifyDataSetChanged();
+            selectedToppingsAdapter.notifyDataSetChanged();
             pizza.removeTopping(toppingToRemove);
         } else if (isDefaultTopping) {
             Toast.makeText(getApplicationContext(), "You are removing " +
@@ -176,6 +180,4 @@ public class PizzaCustomizationActivity extends AppCompatActivity
             toppingToRemove = (Topping) parent.getItemAtPosition(position);
         }
     }
-
-
 }
