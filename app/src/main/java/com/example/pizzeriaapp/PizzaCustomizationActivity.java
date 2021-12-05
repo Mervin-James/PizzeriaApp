@@ -11,6 +11,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Activity class that specifies the attributes and actions for the Pizza
+ * Customization Activity.
+ *
+ * @author Akshar Patel, Mervin James
+ */
 public class PizzaCustomizationActivity extends AppCompatActivity
         implements AdapterView.OnItemSelectedListener {
     Topping toppingToAdd;
@@ -22,6 +28,13 @@ public class PizzaCustomizationActivity extends AppCompatActivity
     private Pizza pizza;
     private Order currentOrder;
 
+    /**
+     * Creates this activity when instantiated.
+     *
+     * @param savedInstanceState a bundle that contains any saved
+     *                           information about this activity's prior
+     *                           state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +66,13 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         selectedToppingsList.setAdapter(selectedToppingsAdapter);
         selectedToppingsList.setOnItemClickListener(new ListViewHandler2());
 
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        pizzaPrice.setText(df.format(pizza.price()));
+        updatePrice();
     }
 
+    /**
+     * Retrieves pizza and current order from MainActivity and adds the
+     * default toppings to the pizza.
+     */
     private void setupPizza() {
         Intent intent = getIntent();
         pizza = (Pizza) intent.getSerializableExtra("SELECTED_PIZZA");
@@ -84,6 +100,11 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         toppings.removeAll(defaultToppings);
     }
 
+    /**
+     * Adds the selected topping to the pizza.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onAddButtonClick(View view) {
         int position = additionalToppingsAdapter.getPosition(toppingToAdd);
         if (toppingToAdd != null) {
@@ -100,12 +121,16 @@ public class PizzaCustomizationActivity extends AppCompatActivity
                                 "At most 7 toppings!",
                         Toast.LENGTH_SHORT).show();
             }
-            DecimalFormat df = new DecimalFormat("###,##0.00");
-            pizzaPrice.setText(df.format(pizza.price()));
+            updatePrice();
         }
         toppingToAdd = null;
     }
 
+    /**
+     * Removes the selected topping from the pizza.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onRemoveButtonClick(View view) {
         int position = selectedToppingsAdapter.getPosition(toppingToRemove);
         boolean isDefaultTopping = defaultToppings.contains(toppingToRemove);
@@ -120,11 +145,15 @@ public class PizzaCustomizationActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "You are removing " +
                     "the essential toppings!", Toast.LENGTH_SHORT).show();
         }
-        DecimalFormat df = new DecimalFormat("###,##0.00");
-        pizzaPrice.setText(df.format(pizza.price()));
+        updatePrice();
         toppingToRemove = null;
     }
 
+    /**
+     * Adds pizza to current order.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onAddToOrderClick(View view) {
         currentOrder.addPizza(pizza);
         Toast.makeText(getApplicationContext(), "Pizza added to the order!"
@@ -135,6 +164,22 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         finish();
     }
 
+    /**
+     * Updates the price of the pizza.
+     */
+    private void updatePrice() {
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        pizzaPrice.setText(df.format(pizza.price()));
+    }
+
+    /**
+     * Updates price when a size is selected from spinner.
+     *
+     * @param parent the AdapterView where the selection happened
+     * @param view the view within the AdapterView that was clicked
+     * @param position the position of the view in the adapter
+     * @param id the row id of the item that is selected
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position,
                                long id) {
@@ -146,15 +191,28 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         } else if (Objects.equals(size, "large")) {
             pizza.setSize(Size.large);
         }
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        pizzaPrice.setText(String.valueOf(pizza.price()));
+        updatePrice();
     }
 
+    /**
+     * Callback method that is invoked when the selection disappears from
+     * this view.
+     *
+     * @param parent the AdapterView that now contains no selected item
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         //empty is fine
     }
 
+    /**
+     * Sets the back button in the view's toolbar to finish the current
+     * activity.
+     *
+     * @param item the MenuItem being selected.
+     * @return true if the selected button is the back button on the
+     * toolbar, else returns the super method's result.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -165,6 +223,10 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Inner class which attaches an item click listener to
+     * additionalToppings ListView.
+     */
     class ListViewHandler implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view,
@@ -173,6 +235,10 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Inner class which attaches an item click listener to
+     * selectedToppings ListView.
+     */
     class ListViewHandler2 implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view,
