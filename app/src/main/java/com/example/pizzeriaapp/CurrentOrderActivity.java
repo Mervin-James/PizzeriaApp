@@ -10,23 +10,23 @@ import android.os.Bundle;
 import java.text.DecimalFormat;
 
 public class CurrentOrderActivity extends AppCompatActivity {
-    private ListView pizzas;
     private ArrayAdapter<Pizza> pizzasAdapter;
-    private TextView customerNumber, subtotal, salesTax, orderTotal;
-    private Button removePizzaBtn, placeOrderBtn;
+    private TextView subtotal;
+    private TextView salesTax;
+    private TextView orderTotal;
     private StoreOrders ordersList;
     private Order order;
-//    private Pizza selectedPizza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_order);
-        customerNumber = findViewById(R.id.customerPhoneNumberTextField);
+        TextView customerNumber =
+                findViewById(R.id.customerPhoneNumberTextField);
         subtotal = findViewById(R.id.subtotalTextField);
         salesTax = findViewById(R.id.salesTaxTextField);
         orderTotal = findViewById(R.id.orderTotalTextField);
-        pizzas = findViewById(R.id.pizzasListView);
+        ListView pizzas = findViewById(R.id.pizzasListView);
         Intent intent = getIntent();
         ordersList = (StoreOrders) intent.getSerializableExtra(
                 "STORE_ORDERS");
@@ -39,21 +39,10 @@ public class CurrentOrderActivity extends AppCompatActivity {
         pizzasAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override public void onChanged() {
                 super.onChanged();
-//                removePizzaBtn.setEnabled(selectedPizza != null);
-//                placeOrderBtn.setEnabled(pizzasAdapter.isEmpty());
                 updateFields();
             }
         });
         updateFields();
-    }
-
-    public void onRemovePizzaButtonClick(View view) {
-
-//        if(selectedPizza == null) return;
-//        pizzasAdapter.remove(selectedPizza);
-//        order.removePizza(selectedPizza);
-//        selectedPizza = null;
-//        updateFields();
     }
 
     public void onPlaceOrderButtonClick(View view) {
@@ -77,7 +66,6 @@ public class CurrentOrderActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view,
                                 int position, long id) {
-//            selectedPizza = (Pizza) parent.getItemAtPosition(position);
             Pizza pizzaToRemove = (Pizza) parent.getItemAtPosition(position);
             pizzasAdapter.remove(pizzaToRemove);
             pizzasAdapter.notifyDataSetChanged();

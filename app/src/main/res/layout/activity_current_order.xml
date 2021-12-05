@@ -88,18 +88,11 @@
             app:layout_constraintTop_toTopOf="@+id/textView17"
             app:layout_constraintStart_toEndOf="@+id/textView17"/>
     <Button
-            android:text="@string/remove_pizza"
-            android:layout_width="152dp"
-            android:layout_height="40dp" android:id="@+id/removePizzaButton"
-            app:layout_constraintEnd_toEndOf="@+id/pizzasListView"
-            app:layout_constraintTop_toTopOf="@+id/textview15"
-            android:onClick="onRemovePizzaButtonClick"/>
-    <Button
             android:text="@string/place_order"
             android:layout_width="152dp"
             android:layout_height="40dp" android:id="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/removePizzaButton"
-            app:layout_constraintTop_toBottomOf="@+id/removePizzaButton"
-            android:layout_marginTop="12dp"
-            android:onClick="onPlaceOrderButtonClick"/>
+            android:onClick="onPlaceOrderButtonClick"
+            app:layout_constraintTop_toBottomOf="@+id/pizzasListView"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="@+id/pizzasListView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

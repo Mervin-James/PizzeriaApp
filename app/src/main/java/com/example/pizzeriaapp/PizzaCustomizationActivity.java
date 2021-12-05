@@ -15,9 +15,6 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         implements AdapterView.OnItemSelectedListener {
     Topping toppingToAdd;
     Topping toppingToRemove;
-    private Spinner spinner;
-    private ListView list1, list2;
-    private ImageView pizzaView;
     private TextView pizzaPrice;
     private ArrayAdapter adapter1, adapter2;
     private ArrayList<Topping> toppings;
@@ -31,7 +28,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         setContentView(R.layout.activity_pizza_customization);
         setupPizza();
 
-        spinner = findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(this,
                         R.array.sizes, android.R.layout.simple_spinner_item);
@@ -41,7 +38,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity
 
         adapter1 = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, toppings);
-        list1 = findViewById(R.id.additionalToppings);
+        ListView list1 = findViewById(R.id.additionalToppings);
         list1.setAdapter(adapter1);
         list1.setOnItemClickListener(new ListViewHandler());
 
@@ -50,7 +47,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity
 
         adapter2 = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, initialToppings);
-        list2 = findViewById(R.id.selectedToppings);
+        ListView list2 = findViewById(R.id.selectedToppings);
         list2.setAdapter(adapter2);
         list2.setOnItemClickListener(new ListViewHandler2());
 
@@ -64,7 +61,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         pizza.setSize(Size.small);
         currentOrder = (Order) intent.getSerializableExtra("SELECTED_ORDER");
         int pizzaImg = intent.getIntExtra("PIZZA_IMG", 0);
-        pizzaView = findViewById(R.id.pizzaView);
+        ImageView pizzaView = findViewById(R.id.pizzaView);
         pizzaView.setImageResource(pizzaImg);
         pizzaPrice = findViewById(R.id.pizzaPrice);
 

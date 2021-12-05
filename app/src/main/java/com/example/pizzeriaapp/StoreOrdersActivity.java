@@ -1,7 +1,6 @@
 package com.example.pizzeriaapp;
 
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,17 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class StoreOrdersActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class StoreOrdersActivity extends AppCompatActivity
+        implements AdapterView.OnItemSelectedListener {
     private StoreOrders orders;
     private Order selectedOrder;
     private ArrayAdapter<String> adapter;
-    private ArrayAdapter<Pizza> orderAdapter;
-    ArrayList<Order> ordersList;
-    ArrayList<String> stringOrdersList;
+    private ArrayList<Order> ordersList;
+    private ArrayList<String> stringOrdersList;
     private ListView ordersListView;
-    Spinner spinner;
-    TextView storeOrderTotal;
-    Button cancelOrderButton;
+    private Spinner spinner;
+    private TextView storeOrderTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +29,10 @@ public class StoreOrdersActivity extends AppCompatActivity implements AdapterVie
         Intent intent = getIntent();
         orders = (StoreOrders) intent.getSerializableExtra("STORE_ORDERS");
         ordersList = orders.getOrders();
-        cancelOrderButton = findViewById(R.id.cancelOrderButton);
+        Button cancelOrderButton = findViewById(R.id.cancelOrderButton);
         cancelOrderButton.setEnabled(false);
         if (!ordersList.isEmpty()) {
-            stringOrdersList= new ArrayList<>();
+            stringOrdersList = new ArrayList<>();
             for (Order order : ordersList) {
                 stringOrdersList.add(order.getPhoneNumber());
             }
@@ -49,8 +47,9 @@ public class StoreOrdersActivity extends AppCompatActivity implements AdapterVie
 
             storeOrderTotal = findViewById(R.id.storeOrderTotalTextField);
             ordersListView = findViewById(R.id.storeOrdersListView);
-            orderAdapter = new ArrayAdapter(this,
-                    android.R.layout.simple_list_item_1, selectedOrder.getPizzas());
+            ArrayAdapter<Pizza> orderAdapter = new ArrayAdapter(this,
+                    android.R.layout.simple_list_item_1,
+                    selectedOrder.getPizzas());
             ordersListView.setAdapter(orderAdapter);
             cancelOrderButton.setEnabled(true);
             updateOrderTotal();
@@ -92,7 +91,8 @@ public class StoreOrdersActivity extends AppCompatActivity implements AdapterVie
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                               long id) {
         String phoneNumber = (String) parent.getSelectedItem();
         selectedCustomerPhoneNumber(phoneNumber);
         ordersListView.setAdapter(new ArrayAdapter(this,
