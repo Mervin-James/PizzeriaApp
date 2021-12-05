@@ -26,6 +26,7 @@ public class StoreOrdersActivity extends AppCompatActivity
     private ListView ordersListView;
     private Spinner spinner;
     private TextView storeOrderTotal;
+    private Button cancelOrderButton;
 
     /**
      * Creates this activity when instantiated.
@@ -41,7 +42,7 @@ public class StoreOrdersActivity extends AppCompatActivity
         Intent intent = getIntent();
         orders = (StoreOrders) intent.getSerializableExtra("STORE_ORDERS");
         ordersList = orders.getOrders();
-        Button cancelOrderButton = findViewById(R.id.cancelOrderButton);
+        cancelOrderButton = findViewById(R.id.cancelOrderButton);
         cancelOrderButton.setEnabled(false);
         if (!ordersList.isEmpty()) {
             stringOrdersList = new ArrayList<>();
@@ -112,6 +113,7 @@ public class StoreOrdersActivity extends AppCompatActivity
             ordersListView.setAdapter(null);
             storeOrderTotal.setText(getResources()
                     .getString(R.string.defaultPrice));
+            cancelOrderButton.setEnabled(false);
         }
     }
 
