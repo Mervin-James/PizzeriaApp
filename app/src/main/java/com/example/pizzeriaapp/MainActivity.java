@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
  * Activity class that specifies the attributes and actions for the Main
  * Activity (home screen of the app).
  *
+ * @author Akshar Patel, Mervin James
  */
 public class MainActivity extends AppCompatActivity {
     private static final int PHONE_NUMBER_DIGITS = 10;
@@ -24,6 +25,13 @@ public class MainActivity extends AppCompatActivity {
     private StoreOrders orders;
     private Order selectedOrder;
 
+    /**
+     * Creates this activity when instantiated.
+     *
+     * @param savedInstanceState a bundle that contains any saved
+     *                           information about this activity's prior
+     *                           state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
         this.orders = new StoreOrders();
     }
 
+    /**
+     * Handles users trying to add a deluxe pizza to the order.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onDeluxeClick(View view) {
         if (isPhoneNumberInvalid()) return;
         Intent intent = new Intent(this, PizzaCustomizationActivity.class);
@@ -47,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, PIZZA_CUSTOMIZATION_REQUEST_CODE);
     }
 
+    /**
+     * Handles users trying to add a hawaiian pizza to the order.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onHawaiianClick(View view) {
         if (isPhoneNumberInvalid()) return;
         Intent intent = new Intent(this, PizzaCustomizationActivity.class);
@@ -60,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, PIZZA_CUSTOMIZATION_REQUEST_CODE);
     }
 
+    /**
+     * Handles users trying to add a pepperoni pizza to the order.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onPepperoniClick(View view) {
         if (isPhoneNumberInvalid()) return;
         Intent intent = new Intent(this, PizzaCustomizationActivity.class);
@@ -74,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, PIZZA_CUSTOMIZATION_REQUEST_CODE);
     }
 
+    /**
+     * Handes users trying to get the overview of the current order.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onCurrentOrdersClick(View view) {
         if (isPhoneNumberInvalid()) return;
         if (selectedOrder == null || !selectedOrder.getPhoneNumber()
@@ -86,12 +114,24 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, CURRENT_ORDER_REQUEST_CODE);
     }
 
+    /**
+     * Handes users trying to get the overview of all the store orders.
+     *
+     * @param view contains information about the current UI.
+     */
     public void onStoreOrdersClick(View view) {
         Intent intent = new Intent(this, StoreOrdersActivity.class);
         intent.putExtra("STORE_ORDERS", this.orders);
         startActivityForResult(intent, STORE_ORDERS_REQUEST_CODE);
     }
 
+    /**
+     * Helper method that validates the inputted customer phone number.
+     * This method also sends a feedback message if there is an error.
+     *
+     * @return true if the customer's phone number is invalid, false
+     * otherwise.
+     */
     private boolean isPhoneNumberInvalid() {
         String phoneNumber = phoneNumberTf.getText().toString();
         if (phoneNumber.length() != PHONE_NUMBER_DIGITS ||
@@ -107,6 +147,12 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Handles incoming intents when child activities are finished.
+     * @param requestCode identifies the child activity.
+     * @param resultCode the status of the task of the child activity.
+     * @param intent contains information about the child activity's results.
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent) {
