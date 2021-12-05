@@ -7,7 +7,6 @@
     <string name="current_order">Current Order</string>
     <string name="store_orders">Store Orders</string>
     <string name="image_view">Image View</string>
-
     <string name="pizza_customization_heading">Customize Your Pizza</string>
     <string name="additionalToppings">Additional Toppings</string>
     <string name="selectedToppings">Selected Toppings</string>
@@ -21,18 +20,15 @@
     <string name="price">Price $</string>
     <string name="defaultPrice">0.00</string>
     <string name="addToOrder">Add to Order</string>
-
     <string name="store_orders_heading">Store Orders</string>
     <string name="order_total">Order Total $</string>
     <string name="cancel_order">Cancel Order</string>
-
     <string name="subtotal_label">Subtotal $</string>
     <string name="sales_tax_label">Sales Tax $</string>
     <string name="order_total_label">Order Total $</string>
     <string name="remove_pizza">Remove Pizza</string>
     <string name="place_order">Place Order</string>
     <string name="remove_pizza_instructions">Click pizza to remove from order</string>
-
     <string name="main_activity_title">RU Pizzeria</string>
     <string name="pizza_customization_activity_title">Pizza Customization</string>
     <string name="current_order_activity_title">Pizza Order Overview</string>
