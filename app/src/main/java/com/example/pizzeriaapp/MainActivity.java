@@ -3,6 +3,7 @@ package com.example.pizzeriaapp;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -92,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 !phoneNumber.matches("[0-9]+")) {
             customerNumberLayout.setError("Please enter a 10 digit phone " +
                     "number");
+            Toast.makeText(getApplicationContext(), "Please enter a 10 " +
+                            "digit phone number",
+                    Toast.LENGTH_SHORT).show();
             return true;
         }
         customerNumberLayout.setError(null);
