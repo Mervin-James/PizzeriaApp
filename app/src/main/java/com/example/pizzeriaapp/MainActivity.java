@@ -85,9 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStoreOrdersClick(View view) {
         Intent intent = new Intent(this, StoreOrdersActivity.class);
-        intent.putExtra("SELECTED_ORDER", this.selectedOrder);
         intent.putExtra("STORE_ORDERS", this.orders);
-        startActivity(intent);
+        startActivityForResult(intent, STORE_ORDERS_REQUEST_CODE);
     }
 
     private boolean isPhoneNumberInvalid() {
@@ -116,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
             this.selectedOrder = null;
             phoneNumberTf.setText("");
         } else if (requestCode == STORE_ORDERS_REQUEST_CODE) {
-
+            this.orders = (StoreOrders) intent.getSerializableExtra(
+                    "STORE_ORDERS");
         }
     }
 

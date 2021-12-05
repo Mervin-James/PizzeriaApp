@@ -31,7 +31,7 @@ public class PizzaCustomizationActivity extends AppCompatActivity
         setContentView(R.layout.activity_pizza_customization);
         setupPizza();
 
-        Spinner spinner = findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(this,
                         R.array.sizes, android.R.layout.simple_spinner_item);
